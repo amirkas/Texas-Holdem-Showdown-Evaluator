@@ -45,6 +45,9 @@
     <ClInclude Include="HandBitMask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\combinations-master\combinations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

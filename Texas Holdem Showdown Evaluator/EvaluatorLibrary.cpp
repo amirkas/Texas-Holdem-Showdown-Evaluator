@@ -1,23 +1,39 @@
-
-
-
 #define NOMINAX
 
 #include "EvaluatorLibrary.h"
 #include "EvaluatorClass.h"
 #include "CardBitMask.h"
 #include "HandBitMask.h"
-#include "string.h"
 #include "vector"
-#include "algorithm"
+#include <algorithm>
 #include "HandEvaluationConstants.h"
+#include "utility"
+#include "combinations.h"
 
+FastHandEvaluator* eval;
 
+void InitEvaluator() {
+	eval = new FastHandEvaluator();
+}
 
-int Get_Winner(char* player_one, char* player_two, char* board) {
+class f {
+public:
+	short* maxRank;
+	FastHandEvaluator* evaluator;
 
-	
-	FastHandEvaluator *eval = new FastHandEvaluator();
+	explicit f(short* pos, FastHandEvaluator* e) : maxRank(pos), evaluator(e) {}
+
+	template<class It>
+	bool operator()(It first, It last) {
+		std::vector<CardBitMask*> combo;
+		combo.insert(combo.begin(), first, last);
+		HandBitMask* handMask = HandBitMask::CreateHandBitMask(combo);
+		*maxRank = std::min(*maxRank, evaluator->GetHandRank(handMask));
+		return false;
+	}
+};
+
+int Get_Winner(std::string player_one, std::string player_two, std::string board) {
 	
 	/*Create Bitmask for each card for each player*/
 	CardBitMask* player_one_cardmask_one = new CardBitMask(player_one[0], player_one[1]);
@@ -28,7 +44,7 @@ int Get_Winner(char* player_one, char* player_two, char* board) {
 
 	/*Separate board into Card Bitmasks*/
 	std::vector<CardBitMask*> board_masks;
-	for (int i = 0; i < strlen(board); i += 2) {
+	for (int i = 0; i < board.size(); i += 2) {
 		CardBitMask* board_card = new CardBitMask(board[i], board[i + 1]);
 		board_masks.push_back(board_card);
 	}
@@ -49,9 +65,19 @@ int Get_Winner(char* player_one, char* player_two, char* board) {
 	short player_one_best_rank = HandEvalConstants::START_RANK_HIGH_CARDS + 1;
 	short player_two_best_rank = HandEvalConstants::START_RANK_HIGH_CARDS + 1;
 
-	//Iterate through every permutation of each player's possible hands
+	//Iterate through every combination of each player's possible hands
 	//while tracking best hand rank (lowest value)
-	while (std::next_permutation(player_one_cards.begin(), player_one_cards.end())) {
+
+	for_each_combination(player_one_cards.begin(),
+						 player_one_cards.begin() + 5,
+						 player_one_cards.end(),
+						 f(&player_one_best_rank, eval));
+	for_each_combination(player_two_cards.begin(),
+						 player_two_cards.begin() + 5,
+						 player_two_cards.end(),
+						 f(&player_two_best_rank, eval));
+
+	/*while (std::next_permutation(player_one_cards.begin(), player_one_cards.end())) {
 		std::next_permutation(player_two_cards.begin(), player_two_cards.end());
 		std::vector<CardBitMask*> p_1_hand_arr(player_one_cards.begin(), player_one_cards.begin() + 5);
 		HandBitMask* p_1_hand = HandBitMask::CreateHandBitMask(p_1_hand_arr);
@@ -61,7 +87,9 @@ int Get_Winner(char* player_one, char* player_two, char* board) {
 		player_one_best_rank = std::min(player_one_best_rank, eval->GetHandRank(p_1_hand));
 		player_two_best_rank = std::min(player_two_best_rank, eval->GetHandRank(p_2_hand));
 
-	}
+	}*/
+
+
 	if (player_one_best_rank < player_two_best_rank) {
 		return 1;
 	}

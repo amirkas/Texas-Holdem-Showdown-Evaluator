@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+*.filters
+/Texas Holdem Showdown Evaluator.sln
+*.h
+*.cpp
+*.vcxproj
