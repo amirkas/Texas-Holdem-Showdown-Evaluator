@@ -17,7 +17,4 @@ int main(int argc, char* argv[]) {
 	int winner_1 = Get_Winner(p1_1, p2_1, b_1);
 	std::cout << winner_1 << "\n";
 
-
-
-
 }

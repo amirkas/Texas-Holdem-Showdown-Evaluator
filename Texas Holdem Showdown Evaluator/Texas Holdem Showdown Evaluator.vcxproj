@@ -149,12 +149,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\combinations-master\combinations.h" />
     <ClInclude Include="CardBitMask.h" />
-    <ClInclude Include="Evaluator.h" />
     <ClInclude Include="EvaluatorLibrary.h" />
     <ClInclude Include="HandEvaluationConstants.h" />
     <ClInclude Include="EvaluatorClass.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="HandBitMask.h" />
+    <ClInclude Include="MonteCarlo.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,6 @@ private:
 	std::unordered_map<int, short>* unique_ranks;
 
 
-
 	/* Private Function Declarations */
 
 	/*Functions that generate lookup table for hand ranks*/

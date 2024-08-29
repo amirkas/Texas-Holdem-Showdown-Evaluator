@@ -11,9 +11,12 @@
 #include "combinations.h"
 
 FastHandEvaluator* eval;
+bool InitCalled = false;
+std::string InitNotCalledErr = "InitEvaluator must be called before executing any other functions";
 
 void InitEvaluator() {
 	eval = new FastHandEvaluator();
+	InitCalled = true;
 }
 
 class f {
@@ -35,6 +38,10 @@ public:
 
 int Get_Winner(std::string player_one, std::string player_two, std::string board) {
 	
+	if (!InitCalled) {
+		throw std::runtime_error(InitNotCalledErr);
+	}
+
 	/*Create Bitmask for each card for each player*/
 	CardBitMask* player_one_cardmask_one = new CardBitMask(player_one[0], player_one[1]);
 	CardBitMask* player_one_cardmask_two = new CardBitMask(player_one[2], player_one[3]);
@@ -100,3 +107,5 @@ int Get_Winner(std::string player_one, std::string player_two, std::string board
 		return -1;
 	}
 }
+
+
