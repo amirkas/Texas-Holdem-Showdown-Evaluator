@@ -2,13 +2,14 @@
 #include <string>
 #include <utility>
 
+
 #ifdef EVALUATOR_EXPORTS
 #define HAND_EVALUATOR_API __declspec(dllexport)
 #else
 #define HAND_EVALUATOR_API __declspec(dllexport)
 #endif
 
-struct MonteCarloData {
+struct EquityData {
 	float playerOneEquity;
 	float playerTwoEquity;
 	float tieFrequency;
@@ -28,6 +29,10 @@ extern "C" HAND_EVALUATOR_API void InitEvaluator();
  */
 extern "C" HAND_EVALUATOR_API int Get_Winner(std::string player_one, std::string player_two, std::string board);
 
+extern "C" HAND_EVALUATOR_API EquityData EquityFromFlop(std::string playerOne, std::string playerTwo, std::string board);
+
+extern "C" HAND_EVALUATOR_API EquityData EquityFromTurn(std::string playerOne, std::string playerTwo, std::string board);
+
 /**
  * @brief Calculates equity before river card is dealt using a monte carlo sim.
  * @param player_one 
@@ -35,7 +40,9 @@ extern "C" HAND_EVALUATOR_API int Get_Winner(std::string player_one, std::string
  * @param board 
  * @return equity of player 1 ; (1 - player 1 equity) = player 2 equity.
  */
-extern "C" HAND_EVALUATOR_API MonteCarloData MonteCarloEquity(std::string player_one,
+extern "C" HAND_EVALUATOR_API EquityData MonteCarloEquity(std::string player_one,
 																std::string player_two,
 																std::string board,
 																int iterations);
+
+

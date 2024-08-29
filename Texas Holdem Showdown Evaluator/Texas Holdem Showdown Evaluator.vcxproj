@@ -149,6 +149,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\combinations-master\combinations.h" />
     <ClInclude Include="CardBitMask.h" />
+    <ClInclude Include="error.h" />
+    <ClInclude Include="EvaluatorConstants.h" />
     <ClInclude Include="EvaluatorLibrary.h" />
     <ClInclude Include="HandEvaluationConstants.h" />
     <ClInclude Include="EvaluatorClass.h" />
