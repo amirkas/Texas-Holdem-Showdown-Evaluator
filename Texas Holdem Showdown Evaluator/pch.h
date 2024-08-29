@@ -9,5 +9,14 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include <string>
+#include <vector>
+#include <time.h>
+#include <stdexcept>
+#include <utility>
+#include <bitset>
+#include <unordered_map>
+#include <math.h>
+#include <algorithm>
 
 #endif //PCH_H

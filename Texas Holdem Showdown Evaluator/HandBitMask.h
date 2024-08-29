@@ -10,15 +10,20 @@ class HandBitMask {
 private:
 
 	
-
-	CardBitMask* card_bitsets[5];
+	int primeRankProduct;
 	std::bitset<27> combined_or_bitset;
 	std::bitset<27> combined_and_bitset;
 
-	CardBitMask** GetCardBitsets();
-
-
 public:
+
+	HandBitMask(); 
+
+	HandBitMask(std::string);
+
+	HandBitMask(std::vector<std::string>::iterator iHand,
+				std::vector<std::string>::iterator handEnd);
+
+	~HandBitMask() {}
 
 	static HandBitMask* CreateHandBitMask(std::vector<CardBitMask*>);
 

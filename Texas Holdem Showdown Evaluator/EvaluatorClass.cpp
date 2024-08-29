@@ -1,8 +1,10 @@
 
-
+#include "pch.h"
 #include "EvaluatorClass.h"
 #include "HandEvaluationConstants.h"
 #include "HandBitMask.h"
+#include <algorithm>
+
 
 using namespace HandEvalConstants;
 
@@ -57,6 +59,46 @@ short FastHandEvaluator::GetHandRank(HandBitMask* hand_bits) {
 		return this->paired->at(HandPrimeVal);
 	}
 }
+
+short FastHandEvaluator::GetHandRank(std::string handStr) {
+
+	HandBitMask tempMask(handStr);
+
+	//Check if hand is flush
+	int HandPrimeVal = tempMask.GetHandPrimeValue();
+	if (tempMask.IsHandFlush()) {
+		return this->flushes->at(HandPrimeVal);
+	}
+	//Check if cards in hand are all unique rank
+	if (tempMask.AreCardsUnique()) {
+		return this->unique_ranks->at(HandPrimeVal);
+	}
+	//Otherwise, and is paired
+	else {
+		return this->paired->at(HandPrimeVal);
+	}
+}
+
+short FastHandEvaluator::GetHandRank(
+					std::vector<std::string>::iterator handBegin,
+					std::vector<std::string>::iterator handEnd)
+{
+	HandBitMask tempMask(handBegin, handEnd);
+	//Check if hand is flush
+	int HandPrimeVal = tempMask.GetHandPrimeValue();
+	if (tempMask.IsHandFlush()) {
+		return this->flushes->at(HandPrimeVal);
+	}
+	//Check if cards in hand are all unique rank
+	if (tempMask.AreCardsUnique()) {
+		return this->unique_ranks->at(HandPrimeVal);
+	}
+	//Otherwise, and is paired
+	else {
+		return this->paired->at(HandPrimeVal);
+	}
+}
+
 
 //Returns -1 if Out of position player wins hand
 //Returns 1 if In Position player wins hand
@@ -338,8 +380,8 @@ bool FastHandEvaluator::IsHandStraight(std::vector<int> ranks_list) {
 	int max_rank = 0;
 	std::bitset<27> curr = std::bitset<27>(0);
 	for (int rank : ranks_list) {
-		min_rank = std::min(rank, min_rank);
-		max_rank = std::max(rank, max_rank);
+		min_rank = (std::min)(rank, min_rank);
+		max_rank = (std::max)(rank, max_rank);
 		std::bitset<27> int_bit = std::bitset<27>().set(1);
 		int_bit <<= ( rank - 2 );
 		curr |= int_bit;

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <utility>
 #include <fstream>
-#include <math.h>
+#include <algorithm>
 #include "HandEvaluationConstants.h"
 
 
@@ -56,6 +56,9 @@ public:
 
 	/*Hand Evaluators that format hands for table lookup*/
 	short GetHandRank(HandBitMask*);
+	short GetHandRank(std::string);
+	short GetHandRank(std::vector<std::string>::iterator handBegin,
+					  std::vector<std::string>::iterator handEnd);
 
 	int EvaluateWinner(HandBitMask* OOP_hand, HandBitMask* IP_hand);
 

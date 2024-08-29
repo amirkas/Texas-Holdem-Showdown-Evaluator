@@ -1,8 +1,42 @@
-
+#include "pch.h"
 #include "HandBitMask.h" 
 #include "CardBitMask.h"
 #include "HandEvaluationConstants.h"
-#include "bitset"
+
+
+HandBitMask::HandBitMask() {
+	
+	combined_or_bitset;
+	combined_and_bitset.set();
+	primeRankProduct = 1;
+}
+
+HandBitMask::HandBitMask(std::string hand) {
+
+	combined_or_bitset;
+	combined_and_bitset.set();
+	primeRankProduct = 1;
+	for (int iStr = 0; iStr < hand.size(); iStr+=2) {
+		CardBitMask mask(hand.substr(iStr, 2));
+		this->primeRankProduct *= mask.GetCardPrime();
+		combined_or_bitset |= mask.GetCardBitset();
+		combined_and_bitset &= mask.GetCardBitset();
+	}
+}
+
+HandBitMask::HandBitMask(std::vector<std::string>::iterator iHand,
+						 std::vector<std::string>::iterator handEnd) {
+
+	combined_or_bitset;
+	combined_and_bitset.set();
+	primeRankProduct = 1;
+	for (iHand; iHand < handEnd; iHand++) {
+		CardBitMask mask(*iHand);
+		this->primeRankProduct *= mask.GetCardPrime();
+		combined_or_bitset |= mask.GetCardBitset();
+		combined_and_bitset &= mask.GetCardBitset();
+	}
+}
 
 /*
 CreateHandBitMask()	-	Factory Constructor for HandBitMask
@@ -29,7 +63,7 @@ HandBitMask* HandBitMask::CreateHandBitMask(std::vector<CardBitMask*> card_bitma
 			delete( hand_bitmask );
 			return nullptr;
 		}
-		hand_bitmask->card_bitsets[i] = card_bitmasks[i];
+		hand_bitmask->primeRankProduct *= card_bitmasks[i]->GetCardPrime();
 		curr_card_bits = card_bits->GetCardBitset();
 		combined_or |= curr_card_bits;
 		combined_and &= curr_card_bits;
@@ -59,9 +93,7 @@ AreCardsUnique()
 */
 bool HandBitMask::AreCardsUnique() {
 
-	std::bitset<27> temp = this->combined_or_bitset;
-	temp >>= 14;
-	return temp.count() == 5;
+	return (combined_or_bitset >> 14).count() == 5;
 }
 
 /*
@@ -71,9 +103,8 @@ IsHandFlush()
 */
 bool HandBitMask::IsHandFlush() {
 
-	std::bitset<27> temp = this->combined_and_bitset;
-	temp &= HandEvalConstants::FLUSH_BIT_MASK;
-	return temp.count() == 1;
+	return (combined_and_bitset & 
+			HandEvalConstants::FLUSH_BIT_MASK).count() == 1;
 }
 
 /*
@@ -85,31 +116,6 @@ GetHandPrimeValue()
 */
 int HandBitMask::GetHandPrimeValue() {
 
-	int product = 1;
-	for (CardBitMask* card_bitmask : this->card_bitsets) {
-		product *= card_bitmask->GetCardPrime();
-	}
-	return product;
+	return primeRankProduct;
 }
 
-
-
-
-/*
-Private methods - Object Accessors.
-	- GetCardBitsets(), returns pointer to CardBitMask* array.
-	- GetCombinedOrBitset(), returns 27-sized bitset of each hand combined with Bitwise OR
-	- GetCombinedAndBitset(), returns 27-sized bitset of each hand combined with Bitwise AND
-
-	- SetCardBitsets(int index, CardBitMask* card)
-		- Sets CardBitMask* at this->card_bitsets[index] to card.
-	- SetCombinedOrBitset(std::bitset<27>) - Sets
-*/
-
-/*
-GetCardBitsets()
-Returns CardBitMask** - pointer to Object's card_bitsets array.
-*/
-CardBitMask** HandBitMask::GetCardBitsets() {
-	return this->card_bitsets;
-}

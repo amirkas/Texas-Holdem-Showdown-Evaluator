@@ -1,5 +1,5 @@
 
-
+#include "pch.h"
 #define NOMINAX
 #include "CardBitMask.h"
 #include "HandEvaluationConstants.h"
@@ -17,13 +17,7 @@ CardBitMask::CardBitMask(std::bitset<27> card_bitset) {
 }
 
 //Convert String representation to Bit representation
-CardBitMask::CardBitMask(std::string card) {
-
-	char rank_char = card[0];
-	char suit_char = card[1];
-
-	CardBitMask(rank_char, suit_char);
-}
+CardBitMask::CardBitMask(std::string card) : CardBitMask(card[0], card[1]) {}
 
 //Convert Char representation to Bit Representation
 CardBitMask::CardBitMask(char card_rank, char card_suit) {

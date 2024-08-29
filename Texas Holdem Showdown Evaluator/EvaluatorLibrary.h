@@ -21,12 +21,19 @@ struct EquityData {
 extern "C" HAND_EVALUATOR_API void InitEvaluator();
 
 /**
+ * @brief Closes evaluator object, removing it from the heap.
+ */
+extern "C" HAND_EVALUATOR_API void CloseEvaluator();
+
+/**
  * @brief Finds the winner at showdown between 2 players.
  * @param player_one 
  * @param player_two 
  * @param board 
  * @return 1 if player 1 wins, -1 if player 2 wins, 0 if it is a draw.
  */
+extern "C" HAND_EVALUATOR_API int Get_Winner_Old_One(std::string player_one, std::string player_two, std::string board);
+extern "C" HAND_EVALUATOR_API int Get_Winner_Old_Two(std::string player_one, std::string player_two, std::string board);
 extern "C" HAND_EVALUATOR_API int Get_Winner(std::string player_one, std::string player_two, std::string board);
 
 extern "C" HAND_EVALUATOR_API EquityData EquityFromFlop(std::string playerOne, std::string playerTwo, std::string board);
