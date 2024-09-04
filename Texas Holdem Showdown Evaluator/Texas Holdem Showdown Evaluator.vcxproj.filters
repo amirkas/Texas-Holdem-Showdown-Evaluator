@@ -1,79 +1,25 @@
-﻿<?xml version="static_cast<float>(1.0)" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\BitMasks">
-      <UniqueIdentifier>{1b16641c-3064-44cf-940b-12521f1bb77e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\BitMasks">
-      <UniqueIdentifier>{54d03342-66b3-48e7-a92d-75ccc79a16cb}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="CardBitMask.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="EvaluatorLibrary.cpp" />
+    <ClCompile Include="EvaluatorClass.cpp" />
+    <ClCompile Include="HandBitMask.cpp" />
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EvaluatorClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HandEvaluationConstants.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EvaluatorLibrary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CardBitMask.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HandBitMask.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\combinations-master\combinations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MonteCarlo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EvaluatorConstants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EvaluatorClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EvaluatorLibrary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CardBitMask.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HandBitMask.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="..\..\combinations-master\combinations.h" />
+    <ClInclude Include="CardBitMask.h" />
+    <ClInclude Include="error.h" />
+    <ClInclude Include="EvaluatorConstants.h" />
+    <ClInclude Include="EvaluatorLibrary.h" />
+    <ClInclude Include="HandEvaluationConstants.h" />
+    <ClInclude Include="EvaluatorClass.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="HandBitMask.h" />
+    <ClInclude Include="MonteCarlo.h" />
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
