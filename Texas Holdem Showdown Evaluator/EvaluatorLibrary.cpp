@@ -1,5 +1,5 @@
 
-#include "pch.h"
+#include "include/pch.h"
 #include "EvaluatorLibrary.h"
 #include "EvaluatorClass.h"
 #include "CardBitMask.h"

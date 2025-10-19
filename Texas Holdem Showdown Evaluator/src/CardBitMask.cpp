@@ -1,5 +1,5 @@
 
-#include "../pch.h"
+#include "../include/pch.h"
 #define NOMINAX
 #include "../include/CardBitMask.h"
 #include "HandEvaluationConstants.h"

@@ -7,8 +7,8 @@ set(LIB_SOURCES
         src/EvaluatorClass.cpp
         EvaluatorLibrary.cpp
         src/HandBitMask.cpp
-        dllmain.cpp
-        pch.cpp
+        src/dllmain.cpp
+        src/pch.cpp
 )
 
 add_library(HoldEmEvaluator SHARED ${LIB_SOURCES})
