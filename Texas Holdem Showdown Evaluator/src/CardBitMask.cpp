@@ -1,7 +1,7 @@
 
-#include "pch.h"
+#include "../pch.h"
 #define NOMINAX
-#include "CardBitMask.h"
+#include "../include/CardBitMask.h"
 #include "HandEvaluationConstants.h"
 #include "bitset"
 #include "vector"

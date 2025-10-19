@@ -91,18 +91,6 @@ int Get_Winner_Old_One(std::string player_one, std::string player_two, std::stri
 						 player_two_cards.end(),
 						 f(&player_two_best_rank, eval));
 
-	/*while (std::next_permutation(player_one_cards.begin(), player_one_cards.end())) {
-		std::next_permutation(player_two_cards.begin(), player_two_cards.end());
-		std::vector<CardBitMask*> p_1_hand_arr(player_one_cards.begin(), player_one_cards.begin() + 5);
-		HandBitMask* p_1_hand = HandBitMask::CreateHandBitMask(p_1_hand_arr);
-		std::vector<CardBitMask*> p_2_hand_arr(player_two_cards.begin(), player_two_cards.begin() + 5);
-		HandBitMask* p_2_hand = HandBitMask::CreateHandBitMask(p_2_hand_arr);
-
-		player_one_best_rank = std::min(player_one_best_rank, eval->GetHandRank(p_1_hand));
-		player_two_best_rank = std::min(player_two_best_rank, eval->GetHandRank(p_2_hand));
-
-	}*/
-
 	/*Free memory on heap*/
 	player_one_cards.clear();
 	player_two_cards.clear();

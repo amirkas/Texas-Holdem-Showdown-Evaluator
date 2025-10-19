@@ -1,5 +1,5 @@
 
-#include "pch.h"
+#include "../pch.h"
 #include "EvaluatorClass.h"
 #include "HandEvaluationConstants.h"
 #include "HandBitMask.h"

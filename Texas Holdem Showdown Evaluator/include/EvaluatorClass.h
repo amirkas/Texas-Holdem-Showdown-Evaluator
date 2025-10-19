@@ -9,7 +9,7 @@
 #include <utility>
 #include <fstream>
 #include <algorithm>
-#include "HandEvaluationConstants.h"
+#include "../HandEvaluationConstants.h"
 
 
 //Forward Declaration for CardBitMask and HandBitMask classes.

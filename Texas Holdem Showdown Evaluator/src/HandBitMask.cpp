@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "../pch.h"
 #include "HandBitMask.h" 
 #include "CardBitMask.h"
 #include "HandEvaluationConstants.h"
